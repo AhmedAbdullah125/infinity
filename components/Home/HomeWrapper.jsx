@@ -6,7 +6,7 @@ import OffersSection from "./OffersSection";
 import ServicesSection from "./ServicesSection";
 import ProductsSection from "./ProductsSection";
 import Entrepreneur from "./Entrepreneur";
-import NewsSection from "./newsSection";
+import NewsSection from "./NewsSection";
 
 
 export default function HomeWrapper() {
