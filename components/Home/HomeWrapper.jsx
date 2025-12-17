@@ -7,6 +7,8 @@ import ServicesSection from "./ServicesSection";
 import ProductsSection from "./ProductsSection";
 import Entrepreneur from "./Entrepreneur";
 import NewsSection from "./NewsSection";
+import ContactSection from "./ContactSection";
+import PartenerSection from "./PartenersSection";
 
 
 export default function HomeWrapper() {
@@ -27,6 +29,8 @@ export default function HomeWrapper() {
       <Entrepreneur lang={lang} />
       <NewsSection lang={lang} />
       <OffersSection lang={lang} />
+      <ContactSection lang={lang} />
+      <PartenerSection lang={lang} />
     </div>
   )
 }
