@@ -13,12 +13,22 @@ import xIcon from '@/src/assets/icons/x.svg'
 import shareIcon from '@/src/assets/icons/share.svg'
 import Image from 'next/image'
 import Link from 'next/link'
+import scissors from "@/src/assets/icons/scissors.svg";
+import scope from "@/src/assets/icons/scope.svg";
+import star from "@/src/assets/icons/star.svg";
+import tooth from "@/src/assets/icons/tooth.svg";
+import smile from "@/src/assets/icons/smile.svg";
+import heart from "@/src/assets/icons/heart.svg";
+import hand from "@/src/assets/icons/hand.svg";
+import kid from "@/src/assets/icons/kid.svg";
+import stethoscope from "@/src/assets/icons/stethoscope.svg";
 // import fullLogo from '@/src/assets/home/fullLogo.svg'
 import fullLogo from '@/src/assets/home/simpleLogo.svg'
 
 import { t } from '@/lib/i18n'
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [lang, setLang] = useState('ar');
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -44,7 +54,62 @@ export default function Header() {
       };
     }
   }, []);
-
+  const products = [
+    {
+      id: 1,
+      title: t(lang, "prod_medical_devices_title"),
+      desc: t(lang, "prod_medical_devices_desc"),
+      icon: stethoscope
+    },
+    {
+      id: 2,
+      title: t(lang, "prod_skin_care_title"),
+      desc: t(lang, "prod_skin_care_desc"),
+      icon: smile
+    },
+    {
+      id: 3,
+      title: t(lang, "prod_baby_care_title"),
+      desc: t(lang, "prod_baby_care_desc"),
+      icon: kid
+    },
+    {
+      id: 4,
+      title: t(lang, "prod_body_care_title"),
+      desc: t(lang, "prod_body_care_desc"),
+      icon: hand
+    },
+    {
+      id: 5,
+      title: t(lang, "prod_health_wellness_title"),
+      desc: t(lang, "prod_health_wellness_desc"),
+      icon: heart
+    },
+    {
+      id: 6,
+      title: t(lang, "prod_makeup_title"),
+      desc: t(lang, "prod_makeup_desc"),
+      icon: star
+    },
+    {
+      id: 7,
+      title: t(lang, "prod_perfumes_title"),
+      desc: t(lang, "prod_perfumes_desc"),
+      icon: scope
+    },
+    {
+      id: 8,
+      title: t(lang, "prod_hair_care_title"),
+      desc: t(lang, "prod_hair_care_desc"),
+      icon: scissors
+    },
+    {
+      id: 9,
+      title: t(lang, "prod_dental_care_title"),
+      desc: t(lang, "prod_dental_care_desc"),
+      icon: tooth
+    }
+  ];
   return (
     <div className="header" style={{ direction: lang == "ar" ? "rtl" : "ltr" }}>
       <div className="upper-header">
@@ -80,8 +145,22 @@ export default function Header() {
             <div className="links">
               <Link href={'/'}>{t(lang, 'home')}</Link>
               <Link href={'/about'}>{t(lang, 'about')}</Link>
-              <Link href={'/services'}>{t(lang, 'services')}</Link>
-              <Link href={'/products'}>{t(lang, 'products')}</Link>
+              <div className="dropdown-container">
+                <Link href={'/services'}>{t(lang, 'services')}</Link>
+              </div>
+              <div className="dropdown-container products-dropdown">
+                <Link href={'/categories'}>{t(lang, 'products')}</Link>
+                <div className="dropdown-menu">
+                  {products.map((prod) => (
+                    <Link href={`/categories/${prod.id}`} key={prod.id} className="dropdown-item">
+                      <div className="icon-cont">
+                        <Image src={prod.icon} alt={prod.title} width={20} height={20} />
+                      </div>
+                      <span>{prod.title}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
               <Link href={'/entrepreneurs'}>{t(lang, 'entrepreneurs_and_investors')}</Link>
               <Link href={'/more'}>{t(lang, 'more')}</Link>
               <Link href={'/news'}>{t(lang, 'news')}</Link>
@@ -120,11 +199,31 @@ export default function Header() {
           {mobileOpen && (
             <div className="mobile-menu" role="menu" aria-label="Main">
               <div className="container">
-                <div className="mobile-menu-cont">
+                <div className="mobile-menu-cont" style={{ maxHeight: '500px', overflowY: 'auto' }}>
                   <Link href={'/'} onClick={() => setMobileOpen(false)}>{t(lang, 'home')}</Link>
                   <Link href={'/about'} onClick={() => setMobileOpen(false)}>{t(lang, 'about')}</Link>
                   <Link href={'/services'} onClick={() => setMobileOpen(false)}>{t(lang, 'services')}</Link>
-                  <Link href={'/products'} onClick={() => setMobileOpen(false)}>{t(lang, 'products')}</Link>
+
+                  <div className="mobile-dropdown-trigger">
+                    <div className="trigger-row" onClick={() => setMobileProductsOpen(!mobileProductsOpen)} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', padding: '12px 10px', color: 'white', fontSize: '18px' }}>
+                      <span>{t(lang, 'products')}</span>
+                      <i className={`fa-solid fa-chevron-${mobileProductsOpen ? 'up' : 'down'}`} style={{ fontSize: '14px' }}></i>
+                    </div>
+                    {mobileProductsOpen && (
+                      <div className="mobile-submenu" >
+                        <Link href={'/categories'} onClick={() => setMobileOpen(false)} style={{ fontSize: '16px', opacity: 0.9 }}>{t(lang, 'view_more_products')}</Link>
+                        {products.map((prod) => (
+                          <Link href={`/categories/${prod.id}`} key={prod.id} onClick={() => setMobileOpen(false)} className='mobile-submenu-item'>
+                            <div className="icon-cont">
+                              <Image src={prod.icon} alt={prod.title} width={16} height={16} />
+                            </div>
+                            <span>{prod.title}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
                   <Link href={'/entrepreneurs'} onClick={() => setMobileOpen(false)}>{t(lang, 'entrepreneurs_and_investors')}</Link>
                   <Link href={'/more'} onClick={() => setMobileOpen(false)}>{t(lang, 'more')}</Link>
                   <Link href={'/news'} onClick={() => setMobileOpen(false)}>{t(lang, 'news')}</Link>

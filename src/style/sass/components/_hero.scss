@@ -8,6 +8,7 @@
     @media screen and (max-width: 991px) {
         height: calc(100vh - 71px);
     }
+
     @media screen and (max-width: 767px) {
         height: calc(100vh - 100px);
     }
@@ -52,6 +53,18 @@
             color: white;
             animation: bounce 2s infinite;
         }
+    }
+}
+
+.secondary-page-hero {
+    height: 320px;
+
+    @media screen and (max-width: 991px) {
+        height: 300px;
+    }
+
+    @media screen and (max-width: 767px) {
+        height: 280px;
     }
 }
 

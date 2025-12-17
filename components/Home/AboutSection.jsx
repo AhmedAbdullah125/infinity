@@ -4,7 +4,10 @@ import aboutImg from '@/src/assets/home/about.png'
 import checkIcon from '@/src/assets/icons/check.svg'
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 export default function AboutSection({ lang }) {
+    const pathname = usePathname();
+
     const features = [
         {
             id: 1,
@@ -44,15 +47,18 @@ export default function AboutSection({ lang }) {
                                 }
                             </div>
                         </div>
-                        <div className="btns">
-                            <Link href={"/about"} className="main-btn">
-                                <span>{t(lang, "know_more_about_us")}</span>
-                                <i className={`fa-solid ${lang == "ar" ? "fa-arrow-right-long" : "fa-arrow-left-long"}`}></i>
-                            </Link>
-                            <Link href={'/about'} className="arrow-btn">
-                                <i className={`fa-solid ${lang == "ar" ? "fa-arrow-left" : "fa-arrow-right"}`}></i>
-                            </Link>
-                        </div>
+                        {
+                            pathname == "/" &&
+                            <div className="btns">
+                                <Link href={"/about"} className="main-btn">
+                                    <span>{t(lang, "know_more_about_us")}</span>
+                                    <i className={`fa-solid ${lang == "ar" ? "fa-arrow-right-long" : "fa-arrow-left-long"}`}></i>
+                                </Link>
+                                <Link href={'/about'} className="arrow-btn">
+                                    <i className={`fa-solid ${lang == "ar" ? "fa-arrow-left" : "fa-arrow-right"}`}></i>
+                                </Link>
+                            </div>
+                        }
                     </div>
                     <div className="l-side">
                         <Image src={aboutImg} alt="about" width={500} height={500} />
