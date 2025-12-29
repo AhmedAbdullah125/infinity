@@ -40,14 +40,7 @@ export default function ProductImages({ product }) {
                         className="product-images__mainLink"
                     >
                         <div className="product-images__mainMedia">
-                            <Image
-                                src={activeImage}
-                                alt={product?.title || "product"}
-                                fill
-                                className="product-images__mainImg"
-                                sizes="(max-width: 768px) 100vw, 900px"
-                                priority
-                            />
+                            <Image src={activeImage} alt={product?.title || "product"} fill className="product-images__mainImg" sizes="(max-width: 768px) 100vw, 900px" priority />
                             <div className="overlay">
                                 <Image src={eye} width={100} height={200} alt="eye" />
                             </div>
@@ -57,13 +50,7 @@ export default function ProductImages({ product }) {
                     {/* Hidden anchors to make it a real gallery (next/prev inside Fancybox) */}
                     <div className="product-images__hiddenGallery" aria-hidden="true">
                         {images.filter(images => images !== activeImage).map((url, idx) => (
-                            <a
-                                key={url + idx}
-                                href={url}
-                                data-caption={product?.title || ""}
-                                data-fancybox="gallery"
-                                tabIndex={-1}
-                            />
+                            <a key={url + idx} href={url} data-caption={product?.title || ""} data-fancybox="gallery" />
                         ))}
                     </div>
                 </FancyboxWrapper>
@@ -90,7 +77,7 @@ export default function ProductImages({ product }) {
                             <SwiperSlide key={url + idx}>
                                 <div
                                     className={`product-images__thumb ${isActive ? "is-active" : ""}`}
-                                    onClick={() => setActiveImage(url)}
+                                    onClick={() => setActiveImage(url.src)}
                                     aria-label={`thumbnail-${idx + 1}`}
                                 >
                                     <div className="product-images__thumbMedia">

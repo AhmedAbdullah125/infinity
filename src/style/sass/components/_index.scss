@@ -1,8 +1,3 @@
-.home-page-content {
-  font-size: 32px;
-  color: $main;
-}
-
 body {
   font-family: "Alexandria";
 }
@@ -44,6 +39,11 @@ body {
         font-weight: 400;
         color: $main;
         margin-bottom: 24px;
+
+        @media screen and (max-width: 992px) {
+
+          font-size: 24px;
+        }
       }
 
       .sec-content {
@@ -60,6 +60,11 @@ body {
           margin-bottom: 24px;
           font-size: 18px;
           font-weight: 400;
+
+          @media screen and (max-width: 992px) {
+
+            font-size: 14px;
+          }
         }
 
         .feats {
@@ -92,6 +97,11 @@ body {
               font-size: 16px;
               font-weight: 400;
               color: $text;
+
+              @media screen and (max-width: 992px) {
+
+                font-size: 14px;
+              }
             }
           }
         }
@@ -926,6 +936,7 @@ body {
     @media screen and (max-width: 992px) {
       grid-template-columns: 1fr;
       text-align: center;
+      justify-items: center;
       gap: 40px;
     }
   }

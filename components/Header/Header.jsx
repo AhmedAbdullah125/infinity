@@ -29,6 +29,7 @@ import { t } from '@/lib/i18n'
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
   const [lang, setLang] = useState('ar');
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -110,6 +111,17 @@ export default function Header() {
       icon: tooth
     }
   ];
+
+  const moreMenu = [
+    { id: 1, title: t(lang, "seminars_events"), link: "/seminars" },
+    { id: 2, title: t(lang, "e_learning"), link: "/e-learning" },
+    { id: 3, title: t(lang, "careers"), link: "/careers" },
+    { id: 4, title: t(lang, "photo_gallery"), link: "/gallery" },
+    { id: 5, title: t(lang, "partners_menu"), link: "/partners" },
+    { id: 6, title: t(lang, "our_location_map"), link: "/contact" },
+    { id: 7, title: t(lang, "complaints_suggestions"), link: "/contact" },
+  ];
+
   return (
     <div className="header" style={{ direction: lang == "ar" ? "rtl" : "ltr" }}>
       <div className="upper-header">
@@ -162,7 +174,22 @@ export default function Header() {
                 </div>
               </div>
               <Link href={'/entrepreneurs'}>{t(lang, 'entrepreneurs_and_investors')}</Link>
-              <Link href={'/more'}>{t(lang, 'more')}</Link>
+
+              {/* Desktop More Dropdown */}
+              <div className="dropdown-container more-dropdown">
+                <Link href={'/more'}>
+                  {t(lang, 'more')}
+                  <i className={`fa-solid fa-chevron-down mx-1 text-xs`} style={{ fontSize: '12px' }}></i>
+                </Link>
+                <div className="dropdown-menu">
+                  {moreMenu.map((item) => (
+                    <Link href={item.link} key={item.id} className="dropdown-item">
+                      <span>{item.title}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
               <Link href={'/news'}>{t(lang, 'news')}</Link>
               <Link href={'/contact'}>{t(lang, 'contact_us')}</Link>
             </div>
@@ -196,6 +223,7 @@ export default function Header() {
               </button>
             </div>
           </div>
+
           {mobileOpen && (
             <div className="mobile-menu" role="menu" aria-label="Main">
               <div className="container">
@@ -225,7 +253,24 @@ export default function Header() {
                   </div>
 
                   <Link href={'/entrepreneurs'} onClick={() => setMobileOpen(false)}>{t(lang, 'entrepreneurs_and_investors')}</Link>
-                  <Link href={'/more'} onClick={() => setMobileOpen(false)}>{t(lang, 'more')}</Link>
+
+                  {/* Mobile More Dropdown */}
+                  <div className="mobile-dropdown-trigger">
+                    <div className="trigger-row" onClick={() => setMobileMoreOpen(!mobileMoreOpen)} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', padding: '12px 10px', color: 'white', fontSize: '18px' }}>
+                      <span>{t(lang, 'more')}</span>
+                      <i className={`fa-solid fa-chevron-${mobileMoreOpen ? 'up' : 'down'}`} style={{ fontSize: '14px' }}></i>
+                    </div>
+                    {mobileMoreOpen && (
+                      <div className="mobile-submenu" >
+                        {moreMenu.map((item) => (
+                          <Link href={item.link} key={item.id} onClick={() => setMobileOpen(false)} style={{ display: 'block', padding: '8px 0', fontSize: '16px', color: 'white', opacity: 0.9 }}>
+                            {item.title}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
                   <Link href={'/news'} onClick={() => setMobileOpen(false)}>{t(lang, 'news')}</Link>
                   <Link href={'/contact'} onClick={() => setMobileOpen(false)}>{t(lang, 'contact_us')}</Link>
                 </div>

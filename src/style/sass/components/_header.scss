@@ -140,12 +140,14 @@
                     display: none;
                 }
 
-                a {
+                a,
+                .dropdown-more {
                     color: $white;
                     text-decoration: none;
                     font-size: 18px;
                     font-weight: 400;
                     transition: all 0.3s ease;
+                    cursor: pointer;
 
                     &:hover {
                         opacity: 0.8;
@@ -157,7 +159,8 @@
                     position: relative;
                     padding: 10px 0; // Area to catch hover
 
-                    &.products-dropdown:hover .dropdown-menu {
+                    &.products-dropdown:hover .dropdown-menu,
+                    &.more-dropdown:hover .dropdown-menu {
                         opacity: 1;
                         visibility: visible;
                     }
@@ -219,6 +222,12 @@
                                 }
                             }
                         }
+                    }
+
+                    &.more-dropdown .dropdown-menu {
+                        grid-template-columns: 1fr;
+                        min-width: 250px;
+                        gap: 8px;
                     }
                 }
             }
