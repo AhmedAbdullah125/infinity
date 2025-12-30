@@ -1,9 +1,10 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import Hero from "../Home/Hero";
-import SeminarsHeader from "./SeminarsHeader";
-import SeminarsContent from "./SeminarsContent";
-export default function SeminarsWrapper() {
+import ContactUs from "./ContactUs";
+import ContactSection from "../Home/ContactSection";
+
+export default function ComplaintsWrapper() {
     const [lang, setLang] = useState('ar');
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -15,9 +16,7 @@ export default function SeminarsWrapper() {
     return (
         <div className="home-page-content" style={{ direction: lang == "ar" ? "rtl" : "ltr" }}>
             <Hero lang={lang} />
-
-            <SeminarsHeader lang={lang} />
-            <SeminarsContent lang={lang} />
+            <ContactSection lang={lang} />
 
         </div>
     )

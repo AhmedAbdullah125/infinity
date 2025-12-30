@@ -118,8 +118,8 @@ export default function Header() {
     { id: 3, title: t(lang, "careers"), link: "/careers" },
     { id: 4, title: t(lang, "photo_gallery"), link: "/gallery" },
     { id: 5, title: t(lang, "partners_menu"), link: "/partners" },
-    { id: 6, title: t(lang, "our_location_map"), link: "/contact" },
-    { id: 7, title: t(lang, "complaints_suggestions"), link: "/contact" },
+    { id: 6, title: t(lang, "our_location_map"), link: "/location" },
+    { id: 7, title: t(lang, "complaints_suggestions"), link: "/complaints" },
   ];
 
   return (
@@ -177,10 +177,10 @@ export default function Header() {
 
               {/* Desktop More Dropdown */}
               <div className="dropdown-container more-dropdown">
-                <Link href={'/more'}>
+                <div className='dropdown-more'>
                   {t(lang, 'more')}
                   <i className={`fa-solid fa-chevron-down mx-1 text-xs`} style={{ fontSize: '12px' }}></i>
-                </Link>
+                </div>
                 <div className="dropdown-menu">
                   {moreMenu.map((item) => (
                     <Link href={item.link} key={item.id} className="dropdown-item">

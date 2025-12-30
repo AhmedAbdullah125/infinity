@@ -2,12 +2,11 @@ import React from "react";
 import { t } from "@/lib/i18n";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbLink } from "../ui/breadcrumb";
 
-export default function SeminarsHeader({ lang }) {
+export default function GalleryHeader({ lang }) {
 
 
     return (
         <div className="entrepreneurs-header">
-
             <div className="container">
                 <Breadcrumb className="category-breadcrumb">
                     <BreadcrumbList>
@@ -16,17 +15,10 @@ export default function SeminarsHeader({ lang }) {
                         </BreadcrumbItem>
                         <BreadcrumbSeparator />
                         <BreadcrumbItem>
-                            <BreadcrumbPage className="breadcrumb-link breadcrumb-active-page">{t(lang, "seminars_events")}</BreadcrumbPage>
+                            <BreadcrumbPage className="breadcrumb-link breadcrumb-active-page">{t(lang, "partners_menu")}</BreadcrumbPage>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
-                <div className="entrepreneurs-header-cont">
-                    <i className="fa-solid fa-graduation-cap"></i>
-                    <h2>{t(lang, "seminars_events")}</h2>
-                    <p className="entrepreneurs-header-cont-p">
-                        {t(lang, "seminars_header_desc")}
-                    </p>
-                </div>
             </div>
         </div>
     );

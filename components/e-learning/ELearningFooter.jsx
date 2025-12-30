@@ -9,9 +9,9 @@ export default function ELearningFooter({ lang }) {
                 <div className="elearning-footer-content">
                     <h2>{t(lang, "elearning_footer_title")}</h2>
                     <p>{t(lang, "elearning_footer_desc")}</p>
-                    <Link href="/contact" className="contact-btn">
-                        {t(lang, "contact_us")}
-                    </Link>
+                    <Link href="/contact" className="contact-btn">{t(lang, "contact_us")}</Link>
+                    <div className="abs1"></div>
+                    <div className="abs2"></div>
                 </div>
             </div>
         </div>
